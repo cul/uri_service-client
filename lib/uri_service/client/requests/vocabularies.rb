@@ -3,7 +3,7 @@ module UriService
     module Requests
       module Vocabularies
         def vocabularies(params = {})
-          request(:get, "/vocabularies", params: params)
+          request(:get, '/vocabularies', params: params)
         end
 
         def vocabulary(string_key)

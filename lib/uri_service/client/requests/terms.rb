@@ -14,7 +14,9 @@ module UriService
 
         def update_term(vocabulary, term = {})
           uri = term.delete('uri')
-          request(:patch, "/vocabularies/#{vocabulary}/terms/#{uri}", body: term)
+          request(:patch,
+                  "/vocabularies/#{vocabulary}/terms/#{uri}",
+                  body: term)
         end
 
         def delete_term(vocabulary, uri)
@@ -22,9 +24,11 @@ module UriService
         end
 
         def search_terms(vocabulary, search_params = {})
-          request(:get, "/vocabularies/#{vocabulary}/terms", params: search_params)
+          request(:get,
+                  "/vocabularies/#{vocabulary}/terms",
+                  params: search_params)
         end
-        alias_method :terms, :search_terms
+        alias terms search_terms
       end
     end
   end

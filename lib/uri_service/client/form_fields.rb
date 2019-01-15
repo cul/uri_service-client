@@ -10,7 +10,7 @@ module UriService
       def vocabulary(action)
         case action.to_s
         when 'index'
-          params_for('/vocabularies','get')
+          params_for('/vocabularies', 'get')
         when 'show'
           params_for('/vocabularies/{string_key}', 'get')
         when 'create'
@@ -27,9 +27,13 @@ module UriService
         when 'create'
           params_for('/vocabularies/{string_key}/custom_fields', 'post')
         when 'update'
-          params_for('/vocabularies/{string_key}/custom_fields/{field_key}', 'patch')
+          params_for(
+            '/vocabularies/{string_key}/custom_fields/{field_key}',
+            'patch'
+          )
         when 'delete'
-          params_for('/vocabularies/{string_key}/custom_fields/{field_key}', 'delete')
+          params_for('/vocabularies/{string_key}/custom_fields/{field_key}',
+                     'delete')
         end
       end
 
