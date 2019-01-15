@@ -1,8 +1,6 @@
 # UriService::Client
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/uri_service/client`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This gem is a lightweight ruby wrapper around the UriService API.
 
 ## Installation
 
@@ -22,7 +20,32 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Configuring Connection
+In order to make a connection to the URI Service API a `url` and an `api_key` are required. The following shows an example on how to set the url and api_key for every request. They can also be set on a per-connection basis. This is shown in the next section.
+
+```ruby
+UriService::Client.configure do |c|
+  c.url = 'https://example.com'
+  c.api_key = 'reallysecretapikey'
+end
+```
+
+### Creating Connection
+```ruby
+# Creates connection using globally set url and api_key.
+uri_service = UriService::Client.connection
+
+# Creates connection by setting url and api_keu per connection.
+uri_service = UriService::Client.connection(url: 'https://example.com', api_key: 'reallysecretapikey')
+```
+
+### Making Requests
+
+```ruby
+uri_service = UriService::Client.connection
+uri_service.all_vocabularies
+
+```
 
 ## Development
 
@@ -33,7 +56,3 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/uri_service-client.
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
