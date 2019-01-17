@@ -1,3 +1,17 @@
+# Require simplecov/coveralls before anything else.
+require 'simplecov'
+require 'coveralls'
+
+Coveralls.wear!
+
+# Use both the coveralls formatter (for sending results to coveralls) and the
+# simplecov html output to have a local display of coverage.
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
+  [SimpleCov::Formatter::HTMLFormatter, Coveralls::SimpleCov::Formatter]
+)
+
+SimpleCov.start
+
 require 'bundler/setup'
 require 'uri_service/client'
 require 'webmock/rspec'
