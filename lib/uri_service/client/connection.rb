@@ -15,6 +15,7 @@ module UriService
       attr_reader :connection, :url, :api_key
 
       BASE_PATH = '/api/v1'.freeze
+      JSON_MIME = 'application/json'.freeze
 
       def initialize(options = {})
         config(options)
@@ -30,9 +31,11 @@ module UriService
 
       def request(method, path, body: {}, params: {})
         response = connection.send(method, "#{BASE_PATH}#{path}") do |r|
+          r.headers['Accept'] = JSON_MIME
+
           unless body.nil? || body.empty?
             r.body = body.to_json
-            r.headers['Content-Type'] = 'application/json'
+            r.headers['Content-Type'] = JSON_MIME
           end
 
           params.each { |k, v| r.params[k] = v }
