@@ -52,18 +52,13 @@ module UriService
 
       private
 
-      def config(options = {})
-        @url     = options[:url] || UriService::Client.url
-        @api_key = options[:api_key] || UriService::Client.api_key
+        def config(options = {})
+          [:url, :api_key].each do |f|
+            instance_variable_set("@#{f}", options[f] || UriService::Client.send(f))
 
-        if url.nil? || url.empty?
-          raise UriService::Client::ConfigurationError, 'Missing UriService::Client.url.'
+            raise UriService::Client::ConfigurationError, "Missing UriService::Client.#{f}" if send(f).nil? || send(f).empty?
+          end
         end
-
-        if api_key.nil? || api_key.empty?
-          raise UriService::Client::ConfigurationError, 'Missing UriService::Client.api_key.'
-        end
-      end
     end
   end
 end

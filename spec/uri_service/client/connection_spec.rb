@@ -118,7 +118,7 @@ RSpec.describe UriService::Client::Connection do
 
     context 'when request returns error in body' do
       let(:body) do
-        { errors: [ { title: 'Vocabulary not found' } ] }
+        { errors: [{ title: 'Vocabulary not found' }] }
       end
       let(:stub) do
         stub_request(:get, "#{url}/api/v1/vocabularies/does_not_exists")

@@ -54,11 +54,11 @@ module UriService
 
       private
 
-      def params_for(path, action)
-        @specification['paths'][path][action]['parameters'].keep_if do |h|
-          h.key?('in') && h['in'] == 'query'
+        def params_for(path, action)
+          @specification['paths'][path][action]['parameters'].keep_if do |h|
+            h.key?('in') && h['in'] == 'query'
+          end
         end
-      end
     end
   end
 end
