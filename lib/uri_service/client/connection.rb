@@ -12,19 +12,12 @@ module UriService
       include UriService::Client::Requests::Vocabularies
       include UriService::Client::Requests::CustomFields
 
-      attr_reader :connection
+      attr_reader :connection, :url, :api_key
 
       BASE_PATH = '/api/v1'.freeze
 
-      def initialize(url: nil, api_key: nil)
-        url ||= UriService::Client.url
-        api_key ||= UriService::Client.api_key
-
-        raise 'Missing UriService::Client.url.' if url.nil? || url.empty?
-
-        if api_key.nil? || api_key.empty?
-          raise 'Missing UriService::Client.api_key.'
-        end
+      def initialize(options = {})
+        config(options)
 
         @connection = Faraday.new(url: url) do |conn|
           conn.request    :url_encoded # form-encode POST params
@@ -55,6 +48,21 @@ module UriService
         UriService::Client::FormFields.new(response)
       rescue StandardError
         raise UriService::Client::Error
+      end
+
+      private
+
+      def config(options = {})
+        @url     = options[:url] || UriService::Client.url
+        @api_key = options[:api_key] || UriService::Client.api_key
+
+        if url.nil? || url.empty?
+          raise UriService::Client::ConfigurationError, 'Missing UriService::Client.url.'
+        end
+
+        if api_key.nil? || api_key.empty?
+          raise UriService::Client::ConfigurationError, 'Missing UriService::Client.api_key.'
+        end
       end
     end
   end

@@ -8,7 +8,7 @@ module UriService
       def initialize(response)
         @status = response.status
         @raw = response.body
-        @data = JSON.parse(raw)
+        @data = (raw.nil? || raw.empty?) ? nil : JSON.parse(raw)
       end
 
       # Checks if errors are present in the response

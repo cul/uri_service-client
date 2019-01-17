@@ -15,7 +15,7 @@ module UriService
         end
 
         def update_vocabulary(vocabulary = {})
-          string_key = vocabulary.delete(:string_key)
+          string_key = vocabulary.delete(:string_key) || vocabulary.delete('string_key')
           request(:patch, "/vocabularies/#{string_key}", body: vocabulary)
         end
 

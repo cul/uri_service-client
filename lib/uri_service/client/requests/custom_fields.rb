@@ -9,7 +9,8 @@ module UriService
         end
 
         def update_custom_field(vocabulary, custom_field = {})
-          field_key = custom_field.delete(:field_key)
+          field_key = custom_field.delete('field_key') || custom_field.delete(:field_key)
+
           request(:patch,
                   "/vocabularies/#{vocabulary}/custom_fields/#{field_key}",
                   body: custom_field)

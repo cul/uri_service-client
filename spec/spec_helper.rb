@@ -1,5 +1,9 @@
 require 'bundler/setup'
 require 'uri_service/client'
+require 'webmock/rspec'
+
+# Loading support files.
+Dir[File.dirname(__FILE__) + '/support/**/*.rb'].each { |f| require f }
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

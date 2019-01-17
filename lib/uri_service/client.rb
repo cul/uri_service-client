@@ -6,12 +6,17 @@ module UriService
     class << self
       attr_accessor :url, :api_key
 
-      def connection
-        UriService::Client::Connection.new
+      def connection(options = {})
+        UriService::Client::Connection.new(options)
       end
 
       def configure
         yield self
+      end
+
+      def reset!
+        @url = nil
+        @api_key = nil
       end
     end
   end

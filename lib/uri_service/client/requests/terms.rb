@@ -5,6 +5,7 @@ module UriService
     module Requests
       module Terms
         def term(vocabulary, uri)
+          uri = CGI.escape(uri)
           request(:get, "/vocabularies/#{vocabulary}/terms/#{uri}")
         end
 
@@ -13,13 +14,14 @@ module UriService
         end
 
         def update_term(vocabulary, term = {})
-          uri = term.delete('uri')
+          uri = term.delete('uri') || term.delete(:uri)
           request(:patch,
-                  "/vocabularies/#{vocabulary}/terms/#{uri}",
+                  "/vocabularies/#{vocabulary}/terms/#{CGI.escape(uri)}",
                   body: term)
         end
 
         def delete_term(vocabulary, uri)
+          uri = CGI.escape(uri)
           request(:delete, "/vocabularies/#{vocabulary}/terms/#{uri}")
         end
 
