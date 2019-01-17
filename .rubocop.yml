@@ -1,7 +1,13 @@
-require: rubocop-rspec
+inherit_gem:
+  bixby: bixby_default.yml
 
-Style/Documentation:
-  Enabled: false
+Naming/FileName:
+  Exclude:
+    - '*.gemspec'
+    - 'Gemfile'
 
-Metrics/MethodLength:
-  Max: 12
+Metrics/BlockLength:
+  ExcludedMethods: ['describe', 'context']
+
+Style/BlockDelimiters:
+  EnforcedStyle: braces_for_chaining
