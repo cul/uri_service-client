@@ -1,4 +1,5 @@
 # UriService::Client
+[![Build Status](https://travis-ci.org/cul/uri_service-client.svg?branch=master)](https://travis-ci.org/cul/uri_service-client) [![Coverage Status](https://coveralls.io/repos/github/cul/uri_service-client/badge.svg?branch=master)](https://coveralls.io/github/cul/uri_service-client?branch=master)
 
 This gem is a lightweight ruby wrapper around the UriService API.
 
