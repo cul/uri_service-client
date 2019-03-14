@@ -1,0 +1,13 @@
+inherit_gem:
+  bixby: bixby_default.yml
+
+Naming/FileName:
+  Exclude:
+    - '*.gemspec'
+    - 'Gemfile'
+
+Metrics/BlockLength:
+  ExcludedMethods: ['describe', 'context']
+
+Style/BlockDelimiters:
+  EnforcedStyle: braces_for_chaining
